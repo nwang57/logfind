@@ -11,11 +11,11 @@ def teardown():
 def test_and_logic():
   test1 = Logfind()
   test1.set_operator("and")
-  assert_equal(test1.search(["logfind"]), True)
+  assert_equal(test1.search(["logfind"]), 'README.md')
 
   test2 = Logfind()
   test2.set_operator("and")
-  assert_equal(test2.search(["logfind", "cool"]), False)
+  assert_equal(test2.search(["logfind", "cool"]), None)
 
 def test_operator():
   test = Logfind()
