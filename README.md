@@ -8,3 +8,10 @@ First project from http://projectsthehardway.com/
     4. I want to be able to install logfind on my computer and run it like other projects. However, don’t push this to PyPI as that’ll really annoy people.
     5. Extra bonus points if you can let me specify regular expressions as things to find in files.
     6. Finally, speed counts, so whoever can make the fastest logfind will win the prize. The prize is nothing, but you know you want it.
+
+
+## Todo list
+	- load file from ~/.logfind
+	- parse the regular expression
+	- scan the files whose name match the regular expression
+	- parse the argument to allow 'or' 'and' logic
