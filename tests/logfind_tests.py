@@ -22,3 +22,8 @@ def test_operator():
 
   test.set_operator("and")
   assert_equal(test.operator, "and")
+
+@raises(Logfind.OperatorError)
+def test_operator_exception():
+  test = Logfind()
+  test.search(["logfind"])

@@ -19,9 +19,20 @@ class Logfind(object):
         if word not in search_file:
           return False
       return True
-    else:
+    elif self.operator == "or":
       #todo 'or' logic
+      pass
+    else:
+      raise Logfind.OperatorError("Operator is not specified! Plz use set_operator(and/or)")
       return False
+
+  class OperatorError(Exception):
+
+    def __init__(self, value):
+      self.value = value
+
+    def __str__(self):
+      return repr(self.value)
 
 def main():
   parser = argparse.ArgumentParser()
@@ -36,8 +47,6 @@ def main():
   else:
     test.set_operator("and")
 
-  #test = Logfind()
-  #print(test.search(['logfind','project']))
   print("first arg ",args.words)
   print("second arg",args.o)
 
