@@ -8,6 +8,16 @@ def setup():
 def teardown():
   print("TEAR DOWN!")
 
+def test_or_logic():
+  test1 = Logfind()
+  test1.set_operator("or")
+  assert_equal(test1.search(["cool"]), None)
+
+  test2 = Logfind()
+  test2.set_operator("or")
+  assert_equal(test2.search(["logfind","cool"]), 'README.md')
+  pass
+
 def test_and_logic():
   test1 = Logfind()
   test1.set_operator("and")
