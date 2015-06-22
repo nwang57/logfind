@@ -1,14 +1,17 @@
 #build a logfind class skeleton
 import os
 import argparse
+import re
 
 class Logfind(object):
 
-  def __init__(self):
+  def __init__(self, pattern):
     #init the files to be searched
     self.filenames = 'README.md'
     self.filenamepath = os.path.join(os.getcwd(), self.filenames)
+    self.pattern = re.compile(pattern)
     self.operator = ""
+
   #set the logic
   def set_operator(self, operator):
     self.operator = operator
@@ -32,8 +35,12 @@ class Logfind(object):
       return False
 
   def search(self, words):
-    if self.search_file(self.filenamepath, words):
-      return self.filenames
+    for dirpath, dnames, fnames in os.walk("./"):
+      for fname in fnames:
+        if self.pattern.match(fname):
+          path = os.path.join(dirpath,fname)
+          if self.search_file(path, words):
+            return path
 
   class OperatorError(Exception):
 
@@ -50,16 +57,16 @@ def main():
 
   args = parser.parse_args()
 
-  test = Logfind()
+  test = Logfind(".*\.md$")
   if (args.o is not None) and (args.words is None):
     test.set_operator("or")
+    print(test.search(args.o))
   elif (args.o is None) and (args.words is not None):
     test.set_operator("and")
+    print(test.search(args.words))
   else:
     raise ValueError("Invalid Argument")
 
-  print("first arg ",args.words)
-  print("second arg",args.o)
 
 
 
